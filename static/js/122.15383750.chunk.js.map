@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/122.15383750.chunk.js","mappings":"gMACA,ECDuB,WACrB,OAAO,iDACR,C","sources":["components/Reviews/index.js","components/Reviews/Reviews.jsx"],"sourcesContent":["import { Reviews } from './Reviews';\nexport default Reviews;\n","export const Reviews = () => {\n  return <div>This is review Route</div>;\n};\n"],"names":[],"sourceRoot":""}
