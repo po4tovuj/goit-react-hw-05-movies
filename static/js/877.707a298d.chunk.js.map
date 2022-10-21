@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/877.707a298d.chunk.js","mappings":"gMACA,ECDoB,WAClB,OAAO,gDACR,C","sources":["components/Cast/index.js","components/Cast/Cast.jsx"],"sourcesContent":["import { Cast } from './Cast';\nexport default Cast;\n","export const Cast = () => {\n  return <div> this is cast route</div>;\n};\n"],"names":[],"sourceRoot":""}
