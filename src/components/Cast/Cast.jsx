@@ -1,3 +1,61 @@
+import { getActorsDetails } from 'moviesApi';
+import { useState, useEffect } from 'react';
+import { ActorList } from './Cast.styled';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { MovieListItem } from 'components/MovieListItem/MovieListItem';
+import { useCallback } from 'react';
+
 export const Cast = () => {
-  return <div> this is cast route</div>;
+  const [actorsList, setActorsList] = useState([]);
+  const { movieId } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleError = useCallback(
+    err => {
+      const {
+        response: {
+          data: { status_message },
+          status,
+        },
+      } = err;
+
+      if (status === 404) {
+        navigate('/404', {
+          state: {
+            message: status_message,
+            from: location.state?.from || '/movies',
+          },
+        });
+      }
+    },
+    [navigate, location]
+  );
+
+  useEffect(() => {
+    getActorsDetails(movieId)
+      .then(result => {
+        if (result) {
+          setActorsList(result.slice(0, 16));
+        }
+      })
+      .catch(err => {
+        handleError(err);
+      });
+  }, [movieId, handleError]);
+
+  if (!movieId) return null;
+  return (
+    <section>
+      <ActorList>
+        {actorsList.map(({ original_name, id, profile_path }) => (
+          <MovieListItem
+            key={id}
+            title={original_name}
+            imgUrl={profile_path}
+          ></MovieListItem>
+        ))}
+      </ActorList>
+    </section>
+  );
 };

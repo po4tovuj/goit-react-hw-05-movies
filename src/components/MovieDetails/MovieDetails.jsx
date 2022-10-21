@@ -1,15 +1,23 @@
 import { lazy } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
 
 const MovieCard = lazy(() => import('components/MovieCard/MovieCard'));
-export const MovieDetails = () => {
+export const MovieDetails = ({ movie }) => {
+  const {
+    original_title: title,
+    poster_path: imageUrl,
+    genres,
+    vote_average: rate,
+    overview,
+    vote_count: votes,
+  } = movie;
   return (
-    <div>
-      MovieDetails component
-      <MovieCard />
-      <NavLink to={'cast'}> cast</NavLink>
-      <NavLink to={'reviews'}> Reviews</NavLink>
-      <Outlet />
-    </div>
+    <MovieCard
+      title={title}
+      imageUrl={imageUrl}
+      rate={rate}
+      genres={genres}
+      overview={overview}
+      votes={votes}
+    ></MovieCard>
   );
 };

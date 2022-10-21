@@ -1,44 +1,34 @@
-import MovieCard from 'components/MovieCard';
 import { getTrending } from 'moviesApi';
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { List, ListItem } from './Home.styled';
+import { MovieList } from 'components/MovieList/MovieList';
+import { Pagination } from 'components/Pagination/Pagination';
+import { useSearchParams } from 'react-router-dom';
 
 export const Home = () => {
   const [films, setFilms] = useState([]);
-  useEffect(() => {
-    getTrending()
-      .then(result => {
-        console.log('result.data.results: ', result);
-        return result.data.results;
-      })
-      .then(setFilms);
-  }, []);
+  const [searchParam, setSearchParams] = useSearchParams();
+  const [totalPages, setTotalPages] = useState(0);
 
+  const page = searchParam.get('page') || 1;
+  useEffect(() => {
+    getTrending({ page }).then(({ page, results, total_results }) => {
+      setTotalPages(total_results);
+      setFilms(results);
+      // return results;
+    });
+  }, [page]);
+  const handlePageChange = nextPage => {
+    console.log('nextPage: ', nextPage);
+    nextPage !== page && setSearchParams({ page: nextPage });
+  };
   return (
-    <List>
-      {films.map(
-        ({
-          title = '',
-          name = '',
-          poster_path,
-          overview,
-          id,
-          vote_average,
-        }) => (
-          <ListItem key={id}>
-            <NavLink to={`/movies/${id}`}>
-              <MovieCard
-                title={title || name}
-                imgUrl={poster_path}
-                id={id}
-                overview={overview}
-                rate={vote_average}
-              />
-            </NavLink>
-          </ListItem>
-        )
-      )}
-    </List>
+    <>
+      <Pagination
+        page={Number(page)}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      ></Pagination>
+      <MovieList movies={films} />
+    </>
   );
 };
