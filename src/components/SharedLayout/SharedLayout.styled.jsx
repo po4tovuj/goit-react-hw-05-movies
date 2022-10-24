@@ -19,13 +19,15 @@ export const Header = styled.header`
 
   > nav {
     display: flex;
+    gap: 16px;
+    width: 100%;
   }
 `;
 
-export const Logo = styled.p`
-  font-weight: 700;
-  margin: 0;
-`;
+// export const Logo = styled.p`
+//   font-weight: 700;
+//   margin: 0;
+// `;
 
 export const Link = styled(NavLink)`
   padding: 8px 16px;
@@ -33,9 +35,14 @@ export const Link = styled(NavLink)`
   text-decoration: none;
   color: black;
   font-weight: 500;
-
+  border: 1px solid gold;
   &.active {
-    color: white;
-    background-color: orangered;
+    // color: white;
+    background-color: gold;
+    border-color: #000;
+  }
+  &:hover {
+    color: currentColor;
+    transform: scale(1.05);
   }
 `;

@@ -17,7 +17,7 @@ export const LinkStyled = styled(NavLinkStyled)`
 export const Image = styled.img`
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
-  // width: 200px;
+  min-height: 329px;
   height: -webkit-fill-available;
 `;
 export const MovieTittle = styled.p`

@@ -6,14 +6,11 @@ export const SharedLayout = () => {
   return (
     <Container>
       <Header>
-        <NavLink to={'/'} end>
-          <Logo>Home</Logo>
-        </NavLink>
         <nav>
+          <Link to="/" end>
+            Home{' '}
+          </Link>
           <Link to="/movies">Movies</Link>
-          {/* ТУТ БУДЕ ПОШУК ФІЛЬМВ */}
-          {/* <Link to="/about">About</Link>
-          <Link to="/products">Products</Link> */}
         </nav>
       </Header>
       <Suspense fallback={<div>Loading page...</div>}>
