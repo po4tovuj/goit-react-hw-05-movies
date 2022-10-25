@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 import {
   LinkStyled,
   ListItem,
@@ -6,7 +8,7 @@ import {
 } from './MovieListItem.styled';
 import defaultImg from 'images/no_poster.jpg';
 import { useLocation } from 'react-router-dom';
-export const MovieListItem = ({ id, title, imgUrl, rate, votes }) => {
+export const MovieListItem = ({ id, title, imgUrl }) => {
   const location = useLocation();
   // console.log('location listItem: ', location.state);
   return (
@@ -24,3 +26,8 @@ export const MovieListItem = ({ id, title, imgUrl, rate, votes }) => {
     </ListItem>
   );
 };
+MovieListItem.propTypes = {
+	id: PropTypes.number,
+	title: PropTypes.string,
+	imgUrl: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])])
+}

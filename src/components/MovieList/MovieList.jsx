@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { List } from './MovieList.styled';
 import { MovieListItem } from 'components/MovieListItem/MovieListItem';
 export const MovieList = ({ movies }) => {
@@ -24,4 +26,9 @@ export const MovieList = ({ movies }) => {
       )}
     </List>
   );
+};
+MovieList.propTypes = {
+  movies: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  }),
 };
