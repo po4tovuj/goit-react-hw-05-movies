@@ -31,7 +31,6 @@ const Movies = () => {
   }, [pageParam, searchParam]);
 
   const handlePageChange = page => {
-    console.log('page: ', page);
     const newSearchQuery = new URLSearchParams();
     searchParam && newSearchQuery.append('query', searchParam);
     newSearchQuery.append('page', page);
