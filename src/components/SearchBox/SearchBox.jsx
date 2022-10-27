@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Wrapper, Input, Icon } from './SearchBox.styled';
 
 export const SearchBox = ({ value, onChange }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(value);
   const onSubmit = e => {
     e.preventDefault();
 
@@ -18,9 +18,12 @@ export const SearchBox = ({ value, onChange }) => {
       <Icon onClick={handleIconClick} />
       <Input
         type="text"
-        onChange={e => setSearchQuery(e.target.value)}
+        onChange={e => {
+          setSearchQuery(e.target.value);
+          console.log('e.target.value: ', e.target.value);
+        }}
         name="query"
-        value={value}
+        value={searchQuery}
         placeholder="Search..."
       />
     </Wrapper>

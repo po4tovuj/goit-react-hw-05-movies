@@ -19,6 +19,7 @@ export const Image = styled.img`
   border-top-right-radius: 2px;
   min-height: 329px;
   height: -webkit-fill-available;
+  max-height: 300px;
 `;
 export const MovieTittle = styled.p`
   margin: 0;
