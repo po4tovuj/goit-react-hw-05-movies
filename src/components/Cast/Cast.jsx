@@ -2,7 +2,7 @@ import { getActorsDetails } from 'moviesApi';
 import { useState, useEffect } from 'react';
 import { ActorList } from './Cast.styled';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { MovieListItem } from 'components/MovieListItem/MovieListItem';
+import { ActorCard } from 'components/ActroCard/ActorCard';
 import { useCallback } from 'react';
 
 export const Cast = () => {
@@ -49,11 +49,12 @@ export const Cast = () => {
     <section>
       <ActorList>
         {actorsList.map(({ original_name, id, profile_path }) => (
-          <MovieListItem
+          <ActorCard
             key={id}
+            id={id}
             title={original_name}
             imgUrl={profile_path}
-          ></MovieListItem>
+          ></ActorCard>
         ))}
       </ActorList>
     </section>

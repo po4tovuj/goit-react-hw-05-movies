@@ -5,16 +5,15 @@ import {
   ListItem,
   MovieTittle,
   Image,
-} from './MovieListItem.styled';
+} from 'components/MovieListItem/MovieListItem.styled';
 import defaultImg from 'images/no_poster.jpg';
 import { useLocation } from 'react-router-dom';
-export const MovieListItem = ({ id, title, imgUrl }) => {
+
+export const ActorCard = ({ id, title, imgUrl }) => {
   const location = useLocation();
-  console.log('location: ', location);
-  // console.log('location listItem: ', location.state);
   return (
     <ListItem key={id}>
-      <LinkStyled to={`/movies/${id}`} state={{ from: location }}>
+      <LinkStyled to={`/actors/${id}`} state={{ from: location.state.from }}>
         <Image
           src={
             imgUrl ? `https://image.tmdb.org/t/p/w200${imgUrl} ` : defaultImg
@@ -27,7 +26,7 @@ export const MovieListItem = ({ id, title, imgUrl }) => {
     </ListItem>
   );
 };
-MovieListItem.propTypes = {
+ActorCard.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,
   imgUrl: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])]),

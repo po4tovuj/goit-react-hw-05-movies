@@ -31,12 +31,11 @@ const MovieCard = ({ title, imageUrl, rate, votes, genres, overview }) => {
         <img
           src={
             imageUrl
-              ? `https://image.tmdb.org/t/p/w200${imageUrl} `
+              ? `https://image.tmdb.org/t/p/w300${imageUrl} `
               : defaultImg
           }
           alt={title}
-          width="250px"
-          height="300px"
+          height="400px"
           loading="lazy"
         ></img>
         <Votes>
